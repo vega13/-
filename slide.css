@@ -55,17 +55,26 @@ body {
 	border-radius: 50%;
 }
 
-#id-round-one {
+
+#id-round-0 {
 	top: 460px;
 	left: 347px;
 }
 
-#id-round-two {
+#id-round-1 {
 	top: 460px;
 	left: 367px;
 }
 
-#id-round-three {
+#id-round-2 {
 	top: 460px;
 	left: 387px;
+}
+
+.tag-focus {
+	border-color: #38b6e6;
+}
+
+.round-focus {
+	border-color: #38b6e6;
 }

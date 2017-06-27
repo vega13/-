@@ -21,13 +21,29 @@ var bindAll = function (elements, eventName, callback) {
     }
 }
 
-var bindClickImage = function() {
+var tagFocus = function(element) {
+    var focus = e('.tag-focus')
+    focus.classList.remove('tag-focus')
+    element.classList.add('tag-focus')
+}
+
+var roundFocus = function(element) {
+    var focus = e('.round-focus')
+    focus.classList.remove('round-focus')
+    element.classList.add('round-focus')
+}
+
+var bindClickTag = function() {
     var bs = es('.tag')
     bindAll(bs, 'click', function(event) {
-        log('click')
         var self = event.target
         var img = e('.show')
         img.src = self.src
+        tagFocus(self)
+
+        var roundId = self.dataset.id
+        var round = e('#id-round-' + roundId)
+        roundFocus(round)
     })
 }
 
@@ -39,6 +55,11 @@ var bindClickButton = function() {
         index = parseInt(index)
         index = (3 + index - 1) % 3
         img.src = index + '.jpg'
+
+        var tag = e('#id-tag-' + index)
+        tagFocus(tag)
+        var round = e('#id-round-' + index)
+        roundFocus(round)
     })
 
     var right = e('.image-button-right')
@@ -48,16 +69,25 @@ var bindClickButton = function() {
         index = parseInt(index)
         index = (3 + index + 1) % 3
         img.src = index + '.jpg'
+
+        var tag = e('#id-tag-' + index)
+        tagFocus(tag)
+        var round = e('#id-round-' + index)
+        roundFocus(round)
     })
 }
 
 var bindclickRound = function() {
     var bs = es('.round')
     bindAll(bs, 'click', function(event) {
-        log('click')
         var self = event.target
         var img = e('.show')
         img.src = self.dataset.src
+
+        var tagId = self.dataset.id
+        var tag = e('#id-tag-' + tagId)
+        tagFocus(tag)
+        roundFocus(self)
     })
 }
 
@@ -70,7 +100,7 @@ var autoPlay = function() {
 }
 
 var __main = function() {
-    bindClickImage()
+    bindClickTag()
     bindClickButton()
     bindclickRound()
     autoPlay()
